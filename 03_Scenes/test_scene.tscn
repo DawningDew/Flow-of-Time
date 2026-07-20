@@ -1,3 +1,48 @@
 [gd_scene format=3 uid="uid://becs20s741ds5"]
 
+[ext_resource type="PackedScene" uid="uid://cunbsrrkre4ei" path="res://03_Scenes/Test_Player.tscn" id="1_n4umv"]
+[ext_resource type="Texture2D" uid="uid://deaky65beqfab" path="res://01_Assets/FPS-controller-assets-main/assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_4d8t5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmrhh"]
+size = Vector3(8.440979, 1, 13.437256)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3whf"]
+size = Vector3(8.460083, 1, 13.431091)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_54frh"]
+panorama = ExtResource("2_4d8t5")
+
+[sub_resource type="Sky" id="Sky_gb8r5"]
+sky_material = SubResource("PanoramaSkyMaterial_54frh")
+
+[sub_resource type="Environment" id="Environment_wwxnt"]
+background_mode = 2
+sky = SubResource("Sky_gb8r5")
+glow_enabled = true
+
 [node name="TestScene" type="Node3D" unique_id=1627635314]
+
+[node name="stage" type="Node3D" parent="." unique_id=480886155]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stage" unique_id=1401747536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.656548, -0.3084669, -2.6932368)
+mesh = SubResource("BoxMesh_gmrhh")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="stage/MeshInstance3D" unique_id=667636562]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/MeshInstance3D/RigidBody3D" unique_id=2074875035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0048217773, 0, 0.0011291504)
+shape = SubResource("BoxShape3D_w3whf")
+
+[node name="Player" parent="." unique_id=1596532953 instance=ExtResource("1_n4umv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7224483, 1.8681204, -1.3711144)
+
+[node name="env" type="Node3D" parent="." unique_id=862148225]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1325641185]
+environment = SubResource("Environment_wwxnt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=1829686438]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
