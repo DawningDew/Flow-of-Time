@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cunbsrrkre4ei"]
 
-[ext_resource type="Script" uid="uid://d2gan2ppu4wr5" path="res://03_Scenes/character_body_3d.gd" id="1_70pvd"]
+[ext_resource type="Script" uid="uid://d2gan2ppu4wr5" path="res://04_Scripts/Global_Scripts/character_body_3d.gd" id="1_70pvd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gmrhh"]
 height = 2.9404297
